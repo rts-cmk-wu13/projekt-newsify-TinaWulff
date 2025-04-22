@@ -1,0 +1,25 @@
+
+@use 'colors';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// nav {
+//     display: grid;
+//     grid-template-columns: repeat(2, 1fr);
+// }
+
+// nav {
+//     display: grid;
+//     grid-template-columns: 1fr 1fr;
+//     justify-self: center;
+// }
+
+ul.category {
+    font-size: 16px;
+    color: $headline-text;
+    font-weight: bolder;
+}
