@@ -1,6 +1,8 @@
 import './style/main.scss';
 
 import homePage from './pages/home.js';
+import settingsPage from './pages/settings.js';
+
 import header from './components/header.js';
 import footer from './components/footer.js';
 //import archivePage from './pages/archive.js';
@@ -26,8 +28,8 @@ function renderPage() {
         mainElm.append(archivePage());
        // } else if (route === "#popular") {
         //    mainElm.append(popularPage());
-       // } else if (route === "#settings") {
-        //    mainElm.append(settingsPage());
+        } else if (route === "#settings") {
+            mainElm.append(settingsPage());
     } else {
         mainElm.append(homePage());  // Standard er forsiden
     }
