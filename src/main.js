@@ -2,7 +2,8 @@ import './style/main.scss';
 
 import homePage from './pages/home.js';
 import header from './components/header.js';
-
+import footer from './components/footer.js';
+//import archivePage from './pages/archive.js';
 
 
 const app = document.querySelector("#app");
@@ -21,14 +22,19 @@ function renderPage() {
     const mainElm = document.createElement("main");
 
     // Afhængig af route, vis den rette side
-    if (route === "#about") {
-        mainElm.append(aboutPage());
+    if (route === "#archive") {
+        mainElm.append(archivePage());
+       // } else if (route === "#popular") {
+        //    mainElm.append(popularPage());
+       // } else if (route === "#settings") {
+        //    mainElm.append(settingsPage());
     } else {
         mainElm.append(homePage());  // Standard er forsiden
     }
 
     app.append(mainElm);  // Append main til app
     //app.append(footer());  // Append footer
+    app.append(footer());
 }
 
 // Kør renderPage() når siden loader, eller når URL ændrer sig
