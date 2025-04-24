@@ -17,8 +17,8 @@ function renderPage() {
     const route = window.location.hash;
 
     // Opret header, afhængigt af om vi er på forsiden
-    const isHome = route === "" || route === "#home";  // Check for forsiden
-    app.append(header(!isHome));  // Hvis det ikke er forsiden, skal headeren have "Forside"-link
+    //const isHome = route === "" || route === "#home";  // Check for forsiden
+    app.append(header(window.location.hash));  // Hvis det ikke er forsiden, skal headeren have "Forside"-link
 
     // Opret main-elementet
     const mainElm = document.createElement("main");

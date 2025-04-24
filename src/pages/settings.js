@@ -1,5 +1,6 @@
 import categoryMenu from '../components/category.js';
-
+import button from '../components/button-round.js';
+import '../components/button-round.scss';
 
 
 export default function settingsPage() {
@@ -21,6 +22,8 @@ export default function settingsPage() {
      ulElm.append(categoryMenu("sport", window.location.hash));
      ulElm.append(categoryMenu("business", window.location.hash));
      ulElm.append(categoryMenu("travel", window.location.hash));
+
+    mainElm.append(button("btnDarkMode", "Toggle dark mode"));
 
     return fragment;
 }
