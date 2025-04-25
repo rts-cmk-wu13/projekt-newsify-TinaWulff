@@ -1,3 +1,6 @@
+header{
+    border-bottom: 1px solid #C5C5C5;
+}
 
 header .logo {
     display: flex;
@@ -17,7 +20,7 @@ h1 {
     flex-direction: column;
     align-items: center;
     padding-bottom: 2em;
-    border-bottom: 1px solid #C5C5C5;
+   
 
     h2 {
         color: $design-color;

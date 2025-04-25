@@ -2,7 +2,7 @@
 import categoryMenu from '../components/category.js';
 
 
-export default function homePageMain() {
+export default function homePage() {
     
     const fragment = document.createDocumentFragment();
 
