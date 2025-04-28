@@ -1,4 +1,6 @@
 // src/utils/renderArticles.js
+
+
 export default function renderArticles(articles) {
     const mainElm = document.querySelector("main");
     if (!mainElm) return;

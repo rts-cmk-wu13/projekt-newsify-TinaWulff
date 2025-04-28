@@ -5,7 +5,7 @@ export async function fetchPopularData(endpoint, days) {
 const apiKey = import.meta.env.VITE_NYT_apiKey;
 
 //henriks:
-const url = new URL(`${endpoint}/${days}.json`, `https://api.nytimes.com/svc/topstories/v2/`);
+const url = new URL(`${endpoint}.json`,`https://api.nytimes.com/svc/topstories/v2/`);
 
 url.searchParams.append("api-key", apiKey);
 
@@ -14,10 +14,11 @@ if (cache[url.href] !== undefined) {
     return cache[url.href].results;
 }
 
-console.log('fetching new data');
+console.log('fetching new data', url.href);
 
 const response = await fetch(url);
 const data = await response.json();
+console.log(data);  
 
 cache[url.href] = data;
 

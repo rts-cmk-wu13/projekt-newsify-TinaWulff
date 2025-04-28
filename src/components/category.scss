@@ -5,10 +5,9 @@ button {
 }
 
 
- li {
+ li.category {
     width: 100%;
     max-width: 100%;
-    text-transform: uppercase;
     margin: 0 auto;
 
     display: grid;
@@ -19,13 +18,15 @@ button {
     padding: 1.5em 0;
 
 
-    span {
+    h4 {
+        text-transform: uppercase;
         grid-column: 2;
         grid-row: 1;
         justify-self: flex-start;
         font-weight: bolder;
         font-size: 16px;
         color: $text-general;
+    
     }
 
     .logo {
@@ -35,17 +36,22 @@ button {
     }
 
     .fa-chevron-right {
-        font-size: 16px;
+        font-size: 18px;
+        padding: 0.5em;
         color: $text-general;
         justify-self: flex-end;
         grid-column: 3;
         grid-row: 1;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 
 
-
-
-
+    .hidden {
+        display: none;
+    }
 
 
 /* The switch - the box around the slider */
@@ -123,4 +129,60 @@ button {
     border-radius: 50%;
   }
   
+
+
+
+///// ARTIKLER //////
+.articles-container {
+    max-width: 100%;
+    grid-column: span 3;
+    margin: 0 1.4em;
+    //border-top: 1px solid #C5C5C5;
+
 }
+
+.article {
+max-width: 100%;
+padding: 1em 0.5em;
+
+&:hover {
+    scale: 1.1;
+}
+
+
+    a {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        column-gap: 1em;
+
+    .article-img {
+        max-width: 100%;
+        grid-column: 1;
+        border-radius: 15px;
+        grid-row: span 2;
+        width: 100%;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+    
+    }
+
+    h3 {
+        font-size: 16px;
+        font-weight: bold;
+        grid-column: 2;
+        font-family: "Playfair Display", serif;;
+    }
+
+    p{
+        font-size: 14px;
+        font-weight: 300;
+        grid-column: 2;
+        font-family: "open sans", sans-serif;
+    }
+
+        }
+    }
+
+}
+
+

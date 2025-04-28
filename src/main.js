@@ -38,14 +38,37 @@ function renderPage() {
     app.append(mainElm);  
     app.append(footer());
 }
+// Funktion til at tilføje event listeners på knapperne
+function attachCategoryClickListeners() {
+    const categories = ["world", "health", "sports", "business", "travel", "technology"];
 
-window.addEventListener("load", async () => {
-    await fetchPopularData('viewed', 7); // Hent ALLE artikler fra alle kategorier ved load
-    console.log()
-    renderPage();
-});
+    categories.forEach(category => {
+        const button = document.querySelector(`.fetch-btn-${category}`); // Sørg for at knapperne har en unik klasse for hver kategori
+        if (button) {
+            button.addEventListener("click", () => handleCategoryClick(category));
+        }
+    });
+}
 
-// Kør renderPage() når siden loader, eller når URL ændrer sig
-//window.addEventListener("load", renderPage);
+// Håndterer fetching af artikler, når en kategori-knap trykkes
+async function handleCategoryClick(category) {
+    const days = 7; // Hent artikler for de sidste 7 dage
+    const articles = await fetchPopularData(category, days); // Fetch data for den valgte kategori
+
+    // Vis de hentede artikler på din side
+    console.log(`Fetched ${category} articles`, articles);
+    // Du kan her opdatere DOM'en med de hentede artikler
+    renderArticles(articles);
+}
+
+// Kald renderPage() ved load og hashchange
+window.addEventListener("load", renderPage);
 window.addEventListener("hashchange", renderPage);
 
+// Funktion til at vise artikler (kan være din eksisterende funktion til at vise artikler på siden)
+function renderArticles(articles) {
+    const articlesContainer = document.querySelector('.articles-container');
+    if (articlesContainer) {
+        articlesContainer.innerHTML = articles.map(article => `<div>${article.title}</div>`).join('');
+    }
+}

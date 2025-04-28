@@ -1,46 +1,68 @@
 
 import './category.scss';
 import logo from '../imgs/newsify_logo.svg';
-import renderArticles from '../utilities/fetch-popular.js';
+import { fetchPopularData } from '../utilities/fetch-popular.js';
 
-export default function categoryMenu(menuItem, route) {
-    let categoryElm = document.createElement("li");
-    categoryElm.className="category"
+export default function categoryMenu(menuCategory, route) {
+    const categoryElm = document.createElement("li");
+    categoryElm.className = "category";
 
     let trailingElement;
 
     if (route === "#settings") {
-      trailingElement = `<label class="switch">
-                           <input type="checkbox">
-                           <span class="slider round"></span>
-                         </label>`;
+        trailingElement = `<label class="switch">
+                               <input type="checkbox">
+                               <span class="slider round"></span>
+                            </label>`;
     } else {
-      trailingElement = `<button class="show-btn"><i class="fa-solid fa-chevron-right"></i></button>`;
+        trailingElement = `<button class="fetch-btn"><i class="fa-solid fa-chevron-right"></i></button>`;
     }
 
     categoryElm.innerHTML = `
-    
         <img class="logo" src="${logo}" alt="newsify logo">
-       <span>${menuItem}</span> 
-       ${trailingElement}
-       `
-    ;
+        <h4>${menuCategory}</h4> 
+        ${trailingElement}
+        <div class="articles-container"></div> <!-- container til denne kategori til at hente artikler ind i -->
+    `;
 
-    //klik på knap for at vise artiklerne (vise dataen gemt i cache)
-    const button = categoryElm.querySelector('.toggle-btn');
+    const button = categoryElm.querySelector('.fetch-btn');
+    const articlesContainer = categoryElm.querySelector('.articles-container');
+
     if (button) {
-        button.addEventListener("click", () => {
-            const key = menuItem.toLowerCase();
-            const articles = articleCache[key];
-            if (articles) {
-                renderArticles(articles);
-            } else {
-                console.warn("Data ikke fundet i cache for:", key);
+        button.addEventListener("click", async () => {
+            //tager kategorien og gør lowercase for så vi kan matche det med API'ets eller cache'ns keys,
+            // og dermed hente ud fra disse kategorier.
+            const key = menuCategory.toLowerCase();
+            
+            
+            // Hvis der allerede er hentet artikler, toggle visning
+            if (articlesContainer.innerHTML.trim() !== "") {
+                articlesContainer.classList.toggle('hidden');
+                return;
             }
+
+            // Fetch artikler
+            const articles = await fetchPopularData(key);
+            console.log("Fetched articles for", key, articles);
+
+           
+            
+            // Render artikler
+            articles.forEach(article => {
+                const articleElm = document.createElement("article");
+                articleElm.className = "article";
+                const imageUrl = article.multimedia?.[0]?.url; 
+                articleElm.innerHTML = `
+                <a href="${article.url}" target="_blank">
+                    <img class="article-img" src="${imageUrl}" alt="article image">
+                    <h3>${article.title}</h3>
+                    <p>${article.abstract}...</p>
+                </a>
+                `;
+                articlesContainer.append(articleElm);
+            });
         });
     }
 
-
     return categoryElm;
 }
-
