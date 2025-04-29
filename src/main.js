@@ -7,8 +7,11 @@ import archivePage from './pages/archive.js';
 
 
 import header from './components/header.js';
-import footer from './components/footer.js';
+import footer, { highlightActiveFooterIcon } from './components/footer.js';
 import { fetchPopularData } from './utilities/fetch-popular.js';
+import { fetchlatestNews } from './utilities/fetch-home.js';
+
+
 
 
 
@@ -37,13 +40,16 @@ function renderPage() {
 
     app.append(mainElm);  
     app.append(footer());
+    highlightActiveFooterIcon();
 }
 // Funktion til at tilføje event listeners på knapperne
 function attachCategoryClickListeners() {
-    const categories = ["world", "health", "sports", "business", "travel", "technology"];
+    //const categories = ["world", "health", "sports", "business", "travel", "technology"];
 
     categories.forEach(category => {
-        const button = document.querySelector(`.fetch-btn-${category}`); // Sørg for at knapperne har en unik klasse for hver kategori
+        // Sørg for at knapperne har en unik klasse for hver kategori
+        const button = document.querySelector(`.fetch-btn-${category}`);
+        
         if (button) {
             button.addEventListener("click", () => handleCategoryClick(category));
         }
@@ -52,13 +58,15 @@ function attachCategoryClickListeners() {
 
 // Håndterer fetching af artikler, når en kategori-knap trykkes
 async function handleCategoryClick(category) {
+
     const days = 7; // Hent artikler for de sidste 7 dage
-    const articles = await fetchPopularData(category, days); // Fetch data for den valgte kategori
+    const popArticles = await fetchPopularData(category, days); // Fetch data for den valgte kategori
+
 
     // Vis de hentede artikler på din side
-    console.log(`Fetched ${category} articles`, articles);
+    console.log(`Fetched ${category} articles`, popArticles);
     // Du kan her opdatere DOM'en med de hentede artikler
-    renderArticles(articles);
+    renderArticles(popArticles);
 }
 
 // Kald renderPage() ved load og hashchange

@@ -1,9 +1,14 @@
 
-
+.settings-article {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+}
 
 .btnDarkMode, .btnSkip, .btnSignIn, .btnContinue {
     border-radius: 40px;
     margin: 2em 1em;
+    display: grid;
 }
 
 

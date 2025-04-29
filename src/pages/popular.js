@@ -16,11 +16,11 @@ export default function popularPage() {
     const ulElm = document.createElement("ul");
     navElm.append(ulElm);
      // Append alle dine komponenter
-     ulElm.append(categoryMenu("arts"));
-     ulElm.append(categoryMenu("health"));
-     ulElm.append(categoryMenu("sports"));
-     ulElm.append(categoryMenu("technology"));
-     ulElm.append(categoryMenu("travel"));
+     ulElm.append(categoryMenu("arts", "#popular"));
+     ulElm.append(categoryMenu("health", "#popular"));
+     ulElm.append(categoryMenu("sports", "#popular"));
+     ulElm.append(categoryMenu("technology", "#popular"));
+     ulElm.append(categoryMenu("travel", "#popular"));
 
     return fragment;
 }

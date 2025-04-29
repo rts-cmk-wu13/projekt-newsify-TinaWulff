@@ -16,11 +16,11 @@ export default function homePage() {
     const ulElm = document.createElement("ul");
     navElm.append(ulElm);
      // Append alle dine komponenter
-     ulElm.append(categoryMenu("Europe"));
-     ulElm.append(categoryMenu("health"));
-     ulElm.append(categoryMenu("sport"));
-     ulElm.append(categoryMenu("business"));
-     ulElm.append(categoryMenu("travel"));
+     ulElm.append(categoryMenu("arts", "#home"));
+     ulElm.append(categoryMenu("health", "#home"));
+     ulElm.append(categoryMenu("sport", "#home"));
+     ulElm.append(categoryMenu("technology", "#home"));
+     ulElm.append(categoryMenu("travel", "#home"));
 
     return fragment;
 }

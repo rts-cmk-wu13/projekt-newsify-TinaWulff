@@ -2,6 +2,7 @@
 import './category.scss';
 import logo from '../imgs/newsify_logo.svg';
 import { fetchPopularData } from '../utilities/fetch-popular.js';
+import { fetchlatestNews } from '../utilities/fetch-home.js';
 
 export default function categoryMenu(menuCategory, route) {
     const categoryElm = document.createElement("li");
@@ -30,6 +31,7 @@ export default function categoryMenu(menuCategory, route) {
 
     if (button) {
         button.addEventListener("click", async () => {
+            button.classList.toggle("clicked");  // Når knappen klikkes, toggle klassen 'clicked'
             //tager kategorien og gør lowercase for så vi kan matche det med API'ets eller cache'ns keys,
             // og dermed hente ud fra disse kategorier.
             const key = menuCategory.toLowerCase();
@@ -42,7 +44,17 @@ export default function categoryMenu(menuCategory, route) {
             }
 
             // Fetch artikler
-            const articles = await fetchPopularData(key);
+            let articles;
+            if (route === "#popular") {
+                articles = await fetchPopularData(key);
+            } else if (route === "" || route === "#home" || route === "#") {
+                articles = await fetchlatestNews(key); 
+            } else {
+                console.warn("Ukendt route, ingen fetch udført");
+                return;
+            }
+            
+
             console.log("Fetched articles for", key, articles);
 
            

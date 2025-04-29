@@ -23,7 +23,11 @@ export default function settingsPage() {
      ulElm.append(categoryMenu("business", window.location.hash));
      ulElm.append(categoryMenu("travel", window.location.hash));
 
-    mainElm.append(button("btnDarkMode", "Toggle dark mode"));
+    const settingsArticle = document.createElement("article");
+    settingsArticle.className = "settings-article";
+    mainElm.append(settingsArticle);
+
+    settingsArticle.append(button("btnDarkMode", "Toggle dark mode"));
 
     return fragment;
 }

@@ -7,6 +7,10 @@ footer {
     bottom: 0;
     background-color: #fff;
   
+
+    a.active i,   a.active span {
+        color: $design-color; // eller en accentfarve du bruger i designet
+    }
 }
 
 .footer ul {
