@@ -3,16 +3,17 @@ import button from '../components/button-round.js';
 import '../components/button-round.scss';
 
 
+
 export default function settingsPage() {
     
     const fragment = document.createDocumentFragment();
 
-    const mainElm = document.createElement("main");
-    fragment.append(mainElm);
+    const sectionElm = document.createElement("section");
+    fragment.append(sectionElm);
 
 
     const navElm = document.createElement("nav");
-    mainElm.append(navElm);
+    sectionElm.append(navElm);
 
     const ulElm = document.createElement("ul");
     navElm.append(ulElm);
@@ -25,9 +26,18 @@ export default function settingsPage() {
 
     const settingsArticle = document.createElement("article");
     settingsArticle.className = "settings-article";
-    mainElm.append(settingsArticle);
+    sectionElm.append(settingsArticle);
 
     settingsArticle.append(button("btnDarkMode", "Toggle dark mode"));
+
+    // Go to log in knap/link
+    const logInLink = document.createElement("a");
+    logInLink.className = "logIn-link"
+    logInLink.href = "#login";
+    logInLink.setAttribute("data-route", "#login");
+    logInLink.textContent = "Sign in or create account";
+
+    settingsArticle.append(logInLink);
 
     return fragment;
 }

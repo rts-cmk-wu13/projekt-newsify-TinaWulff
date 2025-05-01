@@ -1,9 +1,15 @@
 import './style/main.scss';
 
+import splash from './pages/splash.js';
+
 import homePage from './pages/home.js';
 import settingsPage from './pages/settings.js';
 import popularPage from './pages/popular.js';
 import archivePage from './pages/archive.js';
+
+import login from './pages/login.js';
+import onboarding from './pages/onboarding.js';
+
 
 
 import header from './components/header.js';
@@ -23,23 +29,51 @@ function renderPage() {
     // Bestem hvilken side der skal vises, baseret på hash i URL
     const route = window.location.hash;
 
-    app.append(header(window.location.hash)); 
+   
 
     const mainElm = document.createElement("main");
 
     // Afhængig af route, vis den rette side
     if (route === "#archive") {
+        app.append(header(window.location.hash)); 
+        mainElm.innerHTML = "";
         mainElm.append(archivePage());
-       } else if (route === "#popular") {
-           mainElm.append(popularPage());
-        } else if (route === "#settings") {
-            mainElm.append(settingsPage());
-    } else {
-        mainElm.append(homePage());  // Standard er forsiden
-    }
+        app.append(footer());
+    
+    } else if (route === "#popular") {
+        app.append(header(window.location.hash)); 
+        mainElm.innerHTML = "";
+        mainElm.append(popularPage());
+        app.append(footer());
+    
+    } else if (route === "#settings") {
+        app.append(header(window.location.hash)); 
+        mainElm.innerHTML = "";
+        mainElm.append(settingsPage());
+        app.append(footer());
+    
+    } else if (route === "#login") {
+        mainElm.innerHTML = "";
+        mainElm.append(login());
+    
+    } else if (route === "#home") {
+        app.append(header(window.location.hash)); 
+        mainElm.innerHTML = "";
+        mainElm.append(homePage());
+        app.append(footer());
+    
+    } else if (route === "") {
+        mainElm.innerHTML = "";
+        mainElm.append(splash());
+    
 
+} else {
+    mainElm.innerHTML = "";
+    mainElm.append(onboarding());
+}
+    
     app.append(mainElm);  
-    app.append(footer());
+   
     highlightActiveFooterIcon();
 }
 // Funktion til at tilføje event listeners på knapperne

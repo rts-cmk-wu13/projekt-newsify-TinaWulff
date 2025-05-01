@@ -8,6 +8,9 @@ popular fetch eksemple: https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json
 
 
 
+-> pages in the making:
+                        onboarding.js
+                        splash.js
 
 
 
@@ -27,3 +30,57 @@ TO DO:
 
 -> (overskrifter på siderne, bedre UX)
 -> (funktionalitet på log ind..)
+
+
+
+
+-> logik om routing:
+
+hvis der er logget in -> skip log-in site og onboarding
+else if {
+det er første gang siden besøges -> vis splash og derefter vis onboarding (evt som owerlay på homepage? så det er et "gallery" der vises henover home.page mens denne "loades")??
+} else if {
+ session storage er tom (siden er åbnet i ny session("ny indgang til siden")) {
+    vis splash screen ('imiterer en loader', skal evt vises on top of page while the page is loading)
+ }
+ else {
+    åben siden på homePage
+ }
+}
+show splash green 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+anden text på log in side?:
+    Want to personalize? sign in to save articles for later.
+
+->  createDocumentFragment()
+createDocumentFragment() er en metode i JavaScript, der skaber en såkaldt "document fragment" – altså en midlertidig, usynlig container i DOM'en, som du kan bygge eller manipulere elementer i, før du indsætter dem i selve dokumentet.
+
+Hvorfor bruge createDocumentFragment()?
+Det handler primært om performance og effektiv DOM-manipulation.
+
+Når du tilføjer mange elementer direkte til DOM'en ét ad gangen, så bliver browseren nødt til at reflow og repaint hver gang – det kan være tungt og langsomt.
+
+Ved at bruge et DocumentFragment kan du:
+
+Oprette og tilføje mange DOM-elementer i et midlertidigt fragment.
+
+Gøre al manipulation (f.eks. appendChild, classList.add, setAttribute, osv.) uden at påvirke den synlige DOM.
+
+Til sidst indsætte hele fragmentet i DOM’en med én enkelt operation – det er hurtigere og mere effektivt.
+
+Hvad er et DocumentFragment?
+Det er et letvægts-objekt, der fungerer som en beholder for DOM-elementer. Når du indsætter et fragment i DOM’en, bliver dens børn indsat, men selve fragmentet forsvinder – som en usynlig mellemstation.

@@ -6,12 +6,12 @@ export default function homePage() {
     
     const fragment = document.createDocumentFragment();
 
-    const mainElm = document.createElement("main");
-    fragment.append(mainElm);
+    const sectionElm = document.createElement("section");
+    fragment.append(sectionElm);
 
 
     const navElm = document.createElement("nav");
-    mainElm.append(navElm);
+    sectionElm.append(navElm);
 
     const ulElm = document.createElement("ul");
     navElm.append(ulElm);
