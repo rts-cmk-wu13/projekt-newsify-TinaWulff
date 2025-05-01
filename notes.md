@@ -21,7 +21,10 @@ TO DO:
 -> implementering af dark-mode
 
 -> splasch screen
--> On-boarding sider
+            - On-boarding sider
+-> onboarding funktionalitet: skifter indholdet på klik "continue", på 3. klik continue(når vi er nået til enden af arrayet, skift routing til login-siden)
+SKIP-knap skipper frem til login.
+(?)lav funktion så onboarding kun vises hvis det er første gang man kommer til siden(?)
 -> login side
 
 -> log out button på settings

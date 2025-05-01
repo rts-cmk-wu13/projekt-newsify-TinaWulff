@@ -22,30 +22,58 @@ const onboardingData = [
     },
 ];
 
+let currentStep = 0;
 
 export default function onboarding() {
-    let sectionOnboardingElm = document.createElement("section")
-    sectionOnboardingElm.className="sectionOnboarding"
+    const sectionOnboardingElm = document.createElement("section");
+    sectionOnboardingElm.className = "sectionOnboarding";
 
-    sectionOnboardingElm.innerHTML = `
-    
-        <img class="phoneImg" src="${onboardingData[0].img}" alt="illustrative picture">
-        
-        <div class="onboarding-info">
-            <h1>${onboardingData[0].headline}</h1>
-            <p>${onboardingData[0].text}</p>
-            <div class=advanced-icons>
-                <span class="active"></span>
-                <span></span>
-                <span></span>
+    const updateOnboardingContent = () => {
+        sectionOnboardingElm.innerHTML = `
+            <img class="phoneImg" src="${onboardingData[currentStep].img}" alt="illustrative picture">
+            <div class="onboarding-info">
+                <h1>${onboardingData[currentStep].headline}</h1>
+                <p>${onboardingData[currentStep].text}</p>
+                <div class="advanced-icons">
+                    ${onboardingData.map((_, index) =>`
+                        <span class="${index === currentStep ? 'active' : ''}"  data-index="${index}"></span>
+                        `).join('')}
+                </div>
+                <button class="btnSkip">Skip</button>
+                <button class="btnContinue">Continue</button>
             </div>
-        <button class="btnSkip">Skip</button>
-        <button class="btnContinue">Continue</button>
-        </div>
-
-    
+        `;
         
-    `
+        // Tilføj event listeners igen
+        const skipBtn = sectionOnboardingElm.querySelector('.btnSkip');
+        const continueBtn = sectionOnboardingElm.querySelector('.btnContinue');
+        const icons = sectionOnboardingElm.querySelectorAll('.advanced-icons span'); 
+        
+        skipBtn.addEventListener('click', () => {
+            location.hash = 'login'; // Skip til login
+        });
+        
+        continueBtn.addEventListener('click', () => {
+            if (currentStep < onboardingData.length - 1) {
+                currentStep++;
+                updateOnboardingContent(); // Opdater indholdet til næste step
+            } else {
+                location.hash = 'login'; // Når sidste trin er nået, gå til login
+            }
+        });
 
-    return sectionOnboardingElm
+            // Tilføj event listeners til ikon-spans
+            icons.forEach(icon => {
+                icon.addEventListener('click', (event) => {
+                    const index = parseInt(event.target.dataset.index, 10); // Hent index fra data-attribute
+                    currentStep = index;
+                    updateOnboardingContent(); // Opdater indholdet for det valgte step
+                });
+            });
+    }
+
+    // Initialt onboarding indhold
+    updateOnboardingContent();
+
+    return sectionOnboardingElm;
 }

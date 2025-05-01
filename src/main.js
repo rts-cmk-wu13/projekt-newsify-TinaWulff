@@ -29,8 +29,6 @@ function renderPage() {
     // Bestem hvilken side der skal vises, baseret på hash i URL
     const route = window.location.hash;
 
-   
-
     const mainElm = document.createElement("main");
 
     // Afhængig af route, vis den rette side
@@ -62,20 +60,40 @@ function renderPage() {
         mainElm.append(homePage());
         app.append(footer());
     
-    } else if (route === "") {
+    } else if (!route || route === "#") {
         mainElm.innerHTML = "";
         mainElm.append(splash());
     
-
-} else {
+    } else {
     mainElm.innerHTML = "";
     mainElm.append(onboarding());
+    //attachOnboardingEvents();
+    //setTimeout(attachOnboardingEvents, 0);
 }
-    
-    app.append(mainElm);  
+
+app.append(mainElm);  
    
-    highlightActiveFooterIcon();
+highlightActiveFooterIcon();
+
 }
+
+
+// klik på skipknap og gå frem til login
+// function attachOnboardingEvents() {
+//     const skipBtn = document.querySelector('.btnSkip');
+//     if (skipBtn) {
+//         skipBtn.addEventListener('click', () => {
+//             location.hash = 'login';
+//         });
+//     }
+    // med setTimeout beder du browseren om at vente ét "tick" i event loopet,
+    // så al synkron DOM-manipulation (som append(onboarding())) når at fuldføre,
+    // før du prøver at finde elementet.
+//}
+
+
+
+
 // Funktion til at tilføje event listeners på knapperne
 function attachCategoryClickListeners() {
     //const categories = ["world", "health", "sports", "business", "travel", "technology"];
