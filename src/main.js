@@ -10,7 +10,7 @@ import archivePage from './pages/archive.js';
 import login from './pages/login.js';
 import onboarding from './pages/onboarding.js';
 
-
+//import './utilities/swipe.js';
 
 import header from './components/header.js';
 import footer, { highlightActiveFooterIcon } from './components/footer.js';
@@ -30,54 +30,62 @@ function renderPage() {
     const route = window.location.hash;
 
     const mainElm = document.createElement("main");
-
+    
     // Afhængig af route, vis den rette side
     if (route === "#archive") {
         app.append(header(window.location.hash)); 
         mainElm.innerHTML = "";
         mainElm.append(archivePage());
+        app.append(mainElm); 
         app.append(footer());
     
     } else if (route === "#popular") {
         app.append(header(window.location.hash)); 
         mainElm.innerHTML = "";
         mainElm.append(popularPage());
+        app.append(mainElm); 
         app.append(footer());
     
     } else if (route === "#settings") {
         app.append(header(window.location.hash)); 
         mainElm.innerHTML = "";
         mainElm.append(settingsPage());
+        app.append(mainElm); 
         app.append(footer());
     
     } else if (route === "#login") {
         mainElm.innerHTML = "";
         mainElm.append(login());
+        app.append(mainElm); 
     
     } else if (route === "#home") {
         app.append(header(window.location.hash)); 
         mainElm.innerHTML = "";
         mainElm.append(homePage());
+        app.append(mainElm); 
         app.append(footer());
     
     } else if (!route || route === "#") {
         mainElm.innerHTML = "";
         mainElm.append(splash());
+        app.append(mainElm); 
     
     } else {
     mainElm.innerHTML = "";
     mainElm.append(onboarding());
+    app.append(mainElm); 
     //attachOnboardingEvents();
     //setTimeout(attachOnboardingEvents, 0);
 }
 
-app.append(mainElm);  
-   
+
 highlightActiveFooterIcon();
 
 }
 
 
+
+/* Tidligere skipbtn kode
 // klik på skipknap og gå frem til login
 // function attachOnboardingEvents() {
 //     const skipBtn = document.querySelector('.btnSkip');
@@ -90,10 +98,11 @@ highlightActiveFooterIcon();
     // så al synkron DOM-manipulation (som append(onboarding())) når at fuldføre,
     // før du prøver at finde elementet.
 //}
+*/
 
 
 
-
+/* uaktivere funktioner (?)
 // Funktion til at tilføje event listeners på knapperne
 function attachCategoryClickListeners() {
     //const categories = ["world", "health", "sports", "business", "travel", "technology"];
@@ -103,7 +112,7 @@ function attachCategoryClickListeners() {
         const button = document.querySelector(`.fetch-btn-${category}`);
         
         if (button) {
-            button.addEventListener("click", () => handleCategoryClick(category));
+            button.addEventListener("click", () => -handleCategoryClick(category));
         }
     });
 }
@@ -120,6 +129,10 @@ async function handleCategoryClick(category) {
     // Du kan her opdatere DOM'en med de hentede artikler
     renderArticles(popArticles);
 }
+*/
+
+
+
 
 // Kald renderPage() ved load og hashchange
 window.addEventListener("load", renderPage);

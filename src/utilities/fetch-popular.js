@@ -27,19 +27,3 @@ localStorage.setItem('cache', JSON.stringify(cache));
 return data.results; 
 }
    
-// await Promise.all(
-//         categories.map(async (category) => {
-//             const url = `https://api.nytimes.com/svc/topstories/v2/${category}.json?api-key=${apiKey}`;
-//             try {
-//                 const response = await fetch(url);
-//                 const data = await response.json();
-//                 articleCache[category] = data.results;
-//                 console.log(`Fetched ${category}`);
-//             } catch (error) {
-//                 console.error(`Fejl ved fetch af ${category}:`, error);
-//             }
-//         })
-//     );
-// };
-
-//const categories = ["world", "health", "sports", "business", "travel", "technology"];

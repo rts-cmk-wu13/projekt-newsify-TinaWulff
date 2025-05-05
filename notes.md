@@ -16,24 +16,25 @@ popular fetch eksemple: https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json
 
 TO DO:
 
--> swipe og gem i local storage
+-> swipe og gem i local storage og vise på archive side
 -> implementering af at tænde og slukke for kategorier
 -> implementering af dark-mode
 
--> splasch screen
-            - On-boarding sider
--> onboarding funktionalitet: skifter indholdet på klik "continue", på 3. klik continue(når vi er nået til enden af arrayet, skift routing til login-siden)
-SKIP-knap skipper frem til login.
-(?)lav funktion så onboarding kun vises hvis det er første gang man kommer til siden(?)
--> login side
 
+Efter ovenstående:
+            - splasch screen
+            - On-boarding sider
+            - onboarding funktionalitet: skifter indholdet på klik "continue", på 3. klik continue(når vi er nået til enden af arrayet, skift routing til login-siden)
+            - SKIP-knap skipper frem til login.
+-> (?)lav funktion så onboarding kun vises hvis det er første gang man kommer til siden(?)
+            - login side
+-> funktionalitet til login
 -> log out button på settings
+
 -> search formular for forside
 
 
 -> (overskrifter på siderne, bedre UX)
--> (funktionalitet på log ind..)
-
 
 
 

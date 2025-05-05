@@ -18,7 +18,7 @@ export default function homePage() {
      // Append alle dine komponenter
      ulElm.append(categoryMenu("arts", "#home"));
      ulElm.append(categoryMenu("health", "#home"));
-     ulElm.append(categoryMenu("sport", "#home"));
+     ulElm.append(categoryMenu("sports", "#home"));
      ulElm.append(categoryMenu("technology", "#home"));
      ulElm.append(categoryMenu("travel", "#home"));
 

@@ -3,6 +3,7 @@ import './category.scss';
 import logo from '../imgs/newsify_logo.svg';
 import { fetchPopularData } from '../utilities/fetch-popular.js';
 import { fetchlatestNews } from '../utilities/fetch-home.js';
+//import '../utilities/swipe.js';
 
 export default function categoryMenu(menuCategory, route) {
     const categoryElm = document.createElement("li");
@@ -78,3 +79,5 @@ export default function categoryMenu(menuCategory, route) {
 
     return categoryElm;
 }
+
+

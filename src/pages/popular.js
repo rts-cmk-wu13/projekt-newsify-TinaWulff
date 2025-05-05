@@ -1,17 +1,18 @@
 
 import categoryMenu from '../components/category.js';
+import { initSwipe } from '../utilities/swipe.js';
 
 
 export default function popularPage() {
     
     const fragment = document.createDocumentFragment();
 
-    const mainElm = document.createElement("main");
-    fragment.append(mainElm);
+    const sectionElm = document.createElement("section");
+    fragment.append(sectionElm);
 
 
     const navElm = document.createElement("nav");
-    mainElm.append(navElm);
+    sectionElm.append(navElm);
 
     const ulElm = document.createElement("ul");
     navElm.append(ulElm);
@@ -21,6 +22,9 @@ export default function popularPage() {
      ulElm.append(categoryMenu("sports", "#popular"));
      ulElm.append(categoryMenu("technology", "#popular"));
      ulElm.append(categoryMenu("travel", "#popular"));
+
+     //Kald swipefunktion på ulElm'erne:
+     initSwipe(ulElm);
 
     return fragment;
 }

@@ -6,20 +6,20 @@ export default function archivePage() {
     
     const fragment = document.createDocumentFragment();
 
-    const mainElm = document.createElement("main");
-    fragment.append(mainElm);
+    const sectionElm = document.createElement("section");
+    fragment.append(sectionElm);
 
 
     const navElm = document.createElement("nav");
-    mainElm.append(navElm);
+    sectionElm.append(navElm);
 
     const ulElm = document.createElement("ul");
     navElm.append(ulElm);
      // Append alle dine komponenter
-     ulElm.append(categoryMenu("Europe"));
+     ulElm.append(categoryMenu("arts"));
      ulElm.append(categoryMenu("health"));
-     ulElm.append(categoryMenu("sport"));
-     ulElm.append(categoryMenu("business"));
+     ulElm.append(categoryMenu("sports"));
+     ulElm.append(categoryMenu("technology"));
      ulElm.append(categoryMenu("travel"));
 
     return fragment;
