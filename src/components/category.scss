@@ -166,8 +166,9 @@ button {
 
 .article {
 max-width: 100%;
-padding: 1em 0.5em;
+//padding: 1em 0.5em;
 transition: transform 0.3s ease;
+position: relative;
 
 &:first-of-type {
     margin-top: 0.5em;
@@ -176,6 +177,10 @@ transition: transform 0.3s ease;
 &:hover {
     transform: scale(1.05);
     z-index: 1; 
+}
+
+.fa-bookmark {
+font-size: 3em;
 }
 
     a {

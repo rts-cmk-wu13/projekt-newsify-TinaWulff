@@ -17,11 +17,20 @@ export default function popularPage() {
     const ulElm = document.createElement("ul");
     navElm.append(ulElm);
      // Append alle dine komponenter
+
+
+     // if local storage har deaktiveret kategori - 
+
      ulElm.append(categoryMenu("arts", "#popular"));
+ // if local storage har deaktiveret kategori - 
      ulElm.append(categoryMenu("health", "#popular"));
+ // if local storage har deaktiveret kategori - 
      ulElm.append(categoryMenu("sports", "#popular"));
+ // if local storage har deaktiveret kategori - 
      ulElm.append(categoryMenu("technology", "#popular"));
+ // if local storage/switch er aktiveret {
      ulElm.append(categoryMenu("travel", "#popular"));
+
 
      //Kald swipefunktion på ulElm'erne:
      initSwipe(ulElm);

@@ -1,5 +1,6 @@
 
 import categoryMenu from '../components/category.js';
+import { initSwipe } from '../utilities/swipe.js';
 
 
 export default function homePage() {
@@ -21,6 +22,10 @@ export default function homePage() {
      ulElm.append(categoryMenu("sports", "#home"));
      ulElm.append(categoryMenu("technology", "#home"));
      ulElm.append(categoryMenu("travel", "#home"));
+
+
+    //Kald swipefunktion på ulElm'erne:
+    initSwipe(ulElm);
 
     return fragment;
 }

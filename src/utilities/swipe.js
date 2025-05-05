@@ -1,50 +1,105 @@
 import '../components/category.js';
 
-
 export function initSwipe(parent) {
     // Find alle elementerne .category inde i det angivne parent-element.
-// Disse elementer repræsenterer hver deres kategori, som vi vil tilføje swipe-funktionalitet til.
-const containers = parent.querySelectorAll(".category");
+    // Disse elementer repræsenterer hver deres kategori, som vi vil tilføje swipe-funktionalitet til.
+    const containers = parent.querySelectorAll(".category");
     if (!containers.length) {
       console.warn("No .category elements found for swipe");
       return;
     }
 
-    containers.forEach(containers => {
+    const isArchive = window.location.hash === "#archive"; // tjek om vi er på archived
+    
+    // const isArchive = false;
+
+    containers.forEach(container => {
         let initialX;
         let currentX;
+        let movedX;
+
+        const bookmarkIcon = document.createElement("span");
+        bookmarkIcon.innerHTML = `<i class="fa-regular fa-bookmark"></i>`;
+        bookmarkIcon.style.position = "absolute";
+        bookmarkIcon.style.top = "1.5em";
+        bookmarkIcon.style.right = "2em";
+
     
-        containers.addEventListener("pointerdown", startTouch);
-        containers.addEventListener("pointermove", moveTouch);
-        containers.addEventListener("pointerup", endTouch);
+        container.addEventListener("pointerdown", startTouch);
+        container.addEventListener("pointermove", moveTouch);
+        container.addEventListener("pointerup", endTouch);
 
 
         function startTouch(event) {
-          //event.preventDefault();
-          initialX = event.clientX;
-          console.log("Swipe started at:", initialX);
-          event.target.closest("a").classList.remove("animate");
+            // console.log(isArchive)
+
+            //event.preventDefault();
+            initialX = event.clientX;
+            console.log("Swipe started at:", initialX);
+            event.target.closest("a").classList.remove("animate");
+
+            event.target.closest(".article").style.backgroundColor = isArchive ? "#8B0000" : "#4D861F";  
+            bookmarkIcon.innerHTML = isArchive
+                ? `<i class="fa-solid fa-trash"></i>` 
+                : `<i class="fa-regular fa-bookmark"></i>`;
         }
     
-      
         function moveTouch(event) {
             currentX = event.clientX
             movedX = currentX - initialX;
             //tjek om den er favorit
-            event.target.closest(".article").style.backgroundColor = "green" //fins ud af hvilken det egentlig skal være...måske en div omkring a-tagget?
+
             if (movedX < 0) {
-            event.target.closest("a").style.left =  movedX + "px";
+                event.target.closest("a").style.left =  movedX + "px";
             }
+            if(movedX < -100) {
+                event.target.closest(".article").append(bookmarkIcon);
+            } else if(event.target.closest(".article").contains(bookmarkIcon))
+                event.target.closest(".article").removeChild(bookmarkIcon);
         }
 
         function endTouch(event) {
-            initialX = undefined;
             if (movedX < -100) {
-                //vise element bookmark
-                // gemme/slettelogik her
-                event.target.closest("a").classList.add("animate");
-                event.target.closest("a").style.left = "0px"; //var -100px før
+        
+                if (isArchive) {
+                    //SLET FRA LOCAL STORAGE
+                } else {
+                    //vise element bookmark
+                    
+                    // gemmelogik her
+                    const articleEl = event.target.closest(".article");
+                    const title = articleEl.querySelector("h3")?.textContent;
+                    const url = articleEl.querySelector("a")?.href;
+                    const abstract = articleEl.querySelector("p")?.textContent;
+                    const image = articleEl.querySelector("img")?.src;
+                    const category = articleEl.dataset.category || "unknown";
+                    
+                    const articleData = { title, url, abstract, image, category };
+                    
+                    // Hent eksisterende gemte artikler eller lav en tom array
+                    const savedArticles = JSON.parse(localStorage.getItem("savedArticles")) || [];
+                    
+                    // tjek om artiklen allerede findes og hvis ikke,
+                    // så push data'en/artiklen til dataarrayet og
+                    // gem i localstorage
+                    const alreadySaved = savedArticles.some(article => article.url === url);
+                    if (!alreadySaved) {
+                        savedArticles.push(articleData);
+                        localStorage.setItem("savedArticles", JSON.stringify(savedArticles));
+                        console.log("Artikel gemt:", articleData);
+                    } else {
+                        console.log("Artikel findes allerede.");
+                    }
+                    //gemme-logik slut
+                    
+                }
             }
+
+            initialX = undefined;
+            if(event.target.closest(".article").contains(bookmarkIcon))
+                event.target.closest(".article").removeChild(bookmarkIcon);
+            event.target.closest("a").classList.add("animate");
+            event.target.closest("a").style.left = "0px"; //var -100px før
 
             // hvis man vil lave det så den ikke falder tilbage selv:
             // if(movedX > 100) {
@@ -52,15 +107,12 @@ const containers = parent.querySelectorAll(".category");
             // }
 
 
-            }
- 
-      });
-    }
+        }
+
+    });
+}
 
 
-
-
-let movedX
 
 
 //containers.addEventListener("pointerdown", startTouch);

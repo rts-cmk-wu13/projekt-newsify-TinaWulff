@@ -48,8 +48,12 @@ export default function categoryMenu(menuCategory, route) {
             let articles;
             if (route === "#popular") {
                 articles = await fetchPopularData(key);
-            } else if (route === "" || route === "#home" || route === "#") {
+            } else if (route === "" || route === "#home") {
                 articles = await fetchlatestNews(key); 
+            } else if (route === "#archive") {
+                const savedArticles = JSON.parse(localStorage.getItem("savedArticles")) || [];
+                // Filtrér kun artikler der matcher den aktuelle kategori
+                articles = savedArticles.filter(article => article.category === key);
             } else {
                 console.warn("Ukendt route, ingen fetch udført");
                 return;
@@ -64,7 +68,11 @@ export default function categoryMenu(menuCategory, route) {
             articles.forEach(article => {
                 const articleElm = document.createElement("article");
                 articleElm.className = "article";
-                const imageUrl = article.multimedia?.[0]?.url; 
+                articleElm.dataset.category = key; // Tilføj kategori som data-attribut
+               // articleElm.dataset.image = imageUrl || "";
+               
+                const imageUrl = article.image || article.multimedia?.[0]?.url || "fallback.jpg";
+
                 articleElm.innerHTML = `
                 <a href="${article.url}" target="_blank">
                     <img class="article-img" src="${imageUrl}" alt="article image">

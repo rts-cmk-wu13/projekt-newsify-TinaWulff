@@ -1,5 +1,6 @@
 
 import categoryMenu from '../components/category.js';
+import { initSwipe } from '../utilities/swipe.js';
 
 
 export default function archivePage() {
@@ -16,11 +17,13 @@ export default function archivePage() {
     const ulElm = document.createElement("ul");
     navElm.append(ulElm);
      // Append alle dine komponenter
-     ulElm.append(categoryMenu("arts"));
-     ulElm.append(categoryMenu("health"));
-     ulElm.append(categoryMenu("sports"));
-     ulElm.append(categoryMenu("technology"));
-     ulElm.append(categoryMenu("travel"));
+     ulElm.append(categoryMenu("arts", "#archive"));
+     ulElm.append(categoryMenu("health", "#archive"));
+     ulElm.append(categoryMenu("sports", "#archive"));
+     ulElm.append(categoryMenu("technology", "#archive"));
+     ulElm.append(categoryMenu("travel", "#archive"));
 
-    return fragment;
+     initSwipe(ulElm);
+
+  return fragment;
 }
