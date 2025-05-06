@@ -18,19 +18,26 @@ export default function popularPage() {
     navElm.append(ulElm);
      // Append alle dine komponenter
 
+    // Hvis kategori er aktiveret, så vis den
+    if (localStorage.getItem("artsEnabled") !== 'false') {
+        ulElm.append(categoryMenu("arts", "#popular"));
+    }
 
-     // if local storage har deaktiveret kategori - 
+    if (localStorage.getItem("healthEnabled") !== 'false') {
+        ulElm.append(categoryMenu("health", "#popular"));
+    }
 
-     ulElm.append(categoryMenu("arts", "#popular"));
- // if local storage har deaktiveret kategori - 
-     ulElm.append(categoryMenu("health", "#popular"));
- // if local storage har deaktiveret kategori - 
-     ulElm.append(categoryMenu("sports", "#popular"));
- // if local storage har deaktiveret kategori - 
-     ulElm.append(categoryMenu("technology", "#popular"));
- // if local storage/switch er aktiveret {
-     ulElm.append(categoryMenu("travel", "#popular"));
+    if (localStorage.getItem("sportsEnabled") !== 'false') {
+        ulElm.append(categoryMenu("sports", "#popular"));
+    }
 
+    if (localStorage.getItem("technologyEnabled") !== 'false') {
+        ulElm.append(categoryMenu("technology", "#popular"));
+    }
+
+    if (localStorage.getItem("travelEnabled") !== 'false') {
+        ulElm.append(categoryMenu("travel", "#popular"));
+    }
 
      //Kald swipefunktion på ulElm'erne:
      initSwipe(ulElm);

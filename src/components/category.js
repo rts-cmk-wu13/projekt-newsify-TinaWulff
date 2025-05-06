@@ -12,11 +12,19 @@ export default function categoryMenu(menuCategory, route) {
     let trailingElement;
 
     if (route === "#settings") {
+        const key = `${menuCategory}Enabled`; // fx "sportsEnabled"
+
+        const saved = localStorage.getItem(key);
+        const savedState = saved === null || saved === 'true'; // default = true
+        // Så: er saved null? (betyder, at vi ikke har gemt noget i localStorage, så vi skal vise kategorien, da udtrykket så er true)
+        // Hvis savedState er true, vil checkboxen være markeret (checked). (Se koden i trailingElement)
+        // Hvis savedState er false eller null, vil checkboxen ikke være markeret.
         trailingElement = `<label class="switch">
-                               <input type="checkbox">
+                               <input type="checkbox" ${savedState ? 'checked' : ''}>
                                <span class="slider round"></span>
                             </label>`;
-    } else {
+
+     } else {
         trailingElement = `<button class="fetch-btn"><i class="fa-solid fa-chevron-right"></i></button>`;
     }
 
@@ -26,6 +34,21 @@ export default function categoryMenu(menuCategory, route) {
         ${trailingElement}
         <div class="articles-container"></div> <!-- container til denne kategori til at hente artikler ind i -->
     `;
+
+    //switch on/off og gem i storage
+    if (route === "#settings") {
+        const switchInput = categoryElm.querySelector('.switch input');
+
+        if (switchInput) {
+            const key = `${menuCategory}Enabled`; // fx "sportsEnabled"
+
+            switchInput.addEventListener('change', function() {
+                const erAktiveret = switchInput.checked;
+            localStorage.setItem(key, erAktiveret);
+            });
+        }
+}
+    //SLUT switch on/off og gem i storage
 
     const button = categoryElm.querySelector('.fetch-btn');
     const articlesContainer = categoryElm.querySelector('.articles-container');

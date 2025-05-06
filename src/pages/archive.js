@@ -13,15 +13,35 @@ export default function archivePage() {
 
     const navElm = document.createElement("nav");
     sectionElm.append(navElm);
+    
+    // function isCategoryEnabled(categoryKey) {
+    //     const saved = localStorage.getItem(categoryKey);
+    //     return saved === null || saved === 'true';
+    //     //Er saved null? (det betyder, at vi ikke har gemt noget i localStorage, så vi skal vise kategorien, da udtrykket så er true)
+    // }
 
     const ulElm = document.createElement("ul");
     navElm.append(ulElm);
-     // Append alle dine komponenter
-     ulElm.append(categoryMenu("arts", "#archive"));
-     ulElm.append(categoryMenu("health", "#archive"));
-     ulElm.append(categoryMenu("sports", "#archive"));
-     ulElm.append(categoryMenu("technology", "#archive"));
-     ulElm.append(categoryMenu("travel", "#archive"));
+    // Append hvert komponent, såfremt/if kategorien er aktiveret / ikke er false:
+    if (localStorage.getItem("artsEnabled") !== 'false') {
+        ulElm.append(categoryMenu("arts", "#archive"));
+    }
+          
+    if (localStorage.getItem("healthEnabled") !== 'false') {
+        ulElm.append(categoryMenu("health", "#archive"));
+    }
+          
+    if (localStorage.getItem("sportsEnabled") !== 'false') {
+        ulElm.append(categoryMenu("sports", "#archive"));
+    }
+          
+    if (localStorage.getItem("technologyEnabled") !== 'false') {
+        ulElm.append(categoryMenu("technology", "#archive"));
+    }
+          
+    if (localStorage.getItem("travelEnabled") !== 'false') {
+        ulElm.append(categoryMenu("travel", "#archive"));
+    }
 
      initSwipe(ulElm);
 

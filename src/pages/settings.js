@@ -14,6 +14,20 @@ export default function settingsPage() {
 
     const navElm = document.createElement("nav");
     sectionElm.append(navElm);
+        
+/*          //switch on/off og gem i storage
+
+         const switchInput = document.querySelector('.switch input');
+
+         switchInput.addEventListener('change', function() {
+            // Tjek om knappen er slået til (checked)
+            let erAktiveret = switchInput.checked;
+        
+            // Gem det i localStorage, så vi kan huske det næste gang
+            localStorage.setItem('travelEnabled', erAktiveret);
+        })
+        //SLUT switch on/off og gem i storage */
+
 
     const ulElm = document.createElement("ul");
     navElm.append(ulElm);
@@ -23,6 +37,7 @@ export default function settingsPage() {
      ulElm.append(categoryMenu("sports", window.location.hash));
      ulElm.append(categoryMenu("technology", window.location.hash));
      ulElm.append(categoryMenu("travel", window.location.hash));
+
 
     const settingsArticle = document.createElement("article");
     settingsArticle.className = "settings-article";
