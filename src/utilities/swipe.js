@@ -3,7 +3,7 @@ import '../components/category.js';
 export function initSwipe(parent) {
     // Find alle elementerne .category inde i det angivne parent-element.
     // Disse elementer repræsenterer hver deres kategori, som vi vil tilføje swipe-funktionalitet til.
-    const containers = parent.querySelectorAll(".category");
+    const containers = parent.querySelectorAll(".articles-container");
     if (!containers.length) {
       console.warn("No .category elements found for swipe");
       return;
