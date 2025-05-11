@@ -1,13 +1,20 @@
 
-TO DO:
+TO DO VIGTIGE:
 
 -> swipe og gem i local storage og vise på archive side
 ! OBS mangler at lave slette logikken
         - implementering af at tænde og slukke for kategorier
 -> implementering af dark-mode
 
+-> cookie-banner
 
-Efter ovenstående:
+-> tjek opgaveliste i read-me filen
+
+
+
+
+
+Efter ovenstående ->:
             - splasch screen
             - On-boarding sider
             - onboarding funktionalitet: skifter indholdet på klik "continue", på 3. klik continue(når vi er nået til enden af arrayet, skift routing til login-siden)
@@ -15,10 +22,9 @@ Efter ovenstående:
 -> (?)lav funktion så onboarding kun vises hvis det er første gang man kommer til siden(?)
             - login side
 -> funktionalitet til login
--> log out button på settings
+-> log in/out button på settings
 
 -> search formular for forside
-
 
 -> (overskrifter på siderne, bedre UX)
 
