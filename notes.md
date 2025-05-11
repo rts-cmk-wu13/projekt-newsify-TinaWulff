@@ -1,27 +1,20 @@
-Ved fetch, skal jeg måske bruge append to response?
 
-popular fetch eksemple: https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=yourkey
-
-	/viewed/{period}.json
-
-    api key: tAu7Fn8BMFeqpiVtGcgFfvtCPyCyjetp
-
-
-
--> pages in the making:
-                        onboarding.js
-                        splash.js
-
-
-
-TO DO:
+TO DO VIGTIGE:
 
 -> swipe og gem i local storage og vise på archive side
--> implementering af at tænde og slukke for kategorier
+! OBS mangler at lave slette logikken
+        - implementering af at tænde og slukke for kategorier
 -> implementering af dark-mode
 
+-> cookie-banner
 
-Efter ovenstående:
+-> tjek opgaveliste i read-me filen
+
+
+
+
+
+Efter ovenstående ->:
             - splasch screen
             - On-boarding sider
             - onboarding funktionalitet: skifter indholdet på klik "continue", på 3. klik continue(når vi er nået til enden af arrayet, skift routing til login-siden)
@@ -29,10 +22,9 @@ Efter ovenstående:
 -> (?)lav funktion så onboarding kun vises hvis det er første gang man kommer til siden(?)
             - login side
 -> funktionalitet til login
--> log out button på settings
+-> log in/out button på settings
 
 -> search formular for forside
-
 
 -> (overskrifter på siderne, bedre UX)
 
@@ -59,17 +51,7 @@ show splash green
 
 
 
-
-
-
-
-
-
-
-
-anden text på log in side?:
-    Want to personalize? sign in to save articles for later.
-
+NOTER:
 ->  createDocumentFragment()
 createDocumentFragment() er en metode i JavaScript, der skaber en såkaldt "document fragment" – altså en midlertidig, usynlig container i DOM'en, som du kan bygge eller manipulere elementer i, før du indsætter dem i selve dokumentet.
 
@@ -88,3 +70,15 @@ Til sidst indsætte hele fragmentet i DOM’en med én enkelt operation – det 
 
 Hvad er et DocumentFragment?
 Det er et letvægts-objekt, der fungerer som en beholder for DOM-elementer. Når du indsætter et fragment i DOM’en, bliver dens børn indsat, men selve fragmentet forsvinder – som en usynlig mellemstation.
+
+
+
+
+
+
+popular fetch eksemple: https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=yourkey
+
+	/viewed/{period}.json
+
+    api key: tAu7Fn8BMFeqpiVtGcgFfvtCPyCyjetp
+
